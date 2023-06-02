@@ -7,9 +7,6 @@ import PdePreludat
 import Data.String (IsString)
 
 
-
-
-
 data Filmacion = Filmacion {
     titulo :: String,
     puntaje :: Number,
@@ -36,17 +33,31 @@ indianaJones4= Filmacion {titulo="Indiana Jones IV", puntaje=6, anioFilmacion=20
 indianaJones1= Filmacion {titulo="Indiana Jones I", puntaje=8, anioFilmacion=1981, duracion=115, actores=["Harrison Ford"]}
 
 type Filmaciones=[Filmacion]
+
 filmaciones=[armaMortal,nueveReinas,laOdiseaDeLosGiles, laFlor, speed, indianaJones1,indianaJones4]
+
+cantArray::[a]->Number
+cantArray = genericLength
+
+mayorIgual:: (Number,Number)->Bool
+mayorIgual (numCant,num) = num <= numCant
+
+diceSiPinta::Bool->String
+diceSiPinta True ="pinta buena"
+diceSiPinta False= "No pinta buena"
 
 --Saber si una filmación pinta buena, esto ocurre si tiene 5 ó más actores
 pintaBuena :: Filmacion->String
-pintaBuena films| 5 <= (genericLength.actores) films ="pinta buena"
-                |otherwise="No pinta buena"
+pintaBuena films = diceSiPinta (mayorIgual (cantArray (actores films),5))
+
 
 pintaBuena' :: Filmaciones->[String]
 pintaBuena' = Data.List.map pintaBuena
 
 --MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+
+
 precioExtra::Filmacion->Number
 precioExtra films|(115< duracion films) && (120>duracion films)= (duracion films-115)*10
                 |120<= duracion films=100
@@ -62,14 +73,15 @@ data Genero= Drama {escenas::Number}|Accion{peli::Filmacion}
 
 
 modificarSatisfaccion:: (Number->Number)->Persona->Persona
-modificarSatisfaccion num persona= modificarEdad (+1) persona{satisfaccion=(num.satisfaccion) persona}
+modificarSatisfaccion num persona= persona {satisfaccion=(num.satisfaccion) persona}
+
 modificarEdad:: (Number->Number)->Persona->Persona
-modificarEdad num persona= persona{edad=(num.edad) persona}
+modificarEdad num persona= modificarSatisfaccion num persona{edad=((+1).edad)  persona}
+
 queVio:: (Persona, Genero) ->Persona
-queVio (persona, Drama{escenas})
-                                |3>escenas = modificarSatisfaccion(+escenas) persona
-                                |3<=escenas = modificarSatisfaccion (+3) persona
-queVio (persona,Accion{peli})|"pinta buena" == pintaBuena peli  =  modificarSatisfaccion (+100) persona
-                             |"No pinta buena" == pintaBuena peli = persona
+queVio (persona, Drama{escenas})|3>escenas = modificarEdad (+escenas) persona
+                                |3<=escenas = modificarEdad (+3) persona
+queVio (persona,Accion{peli})|mayorIgual (cantArray (actores peli),5)  =  modificarSatisfaccion (+100) persona
+                             |otherwise = persona
 
 
