@@ -1,0 +1,129 @@
+====================================
+**PUNTO 1
+====================================
+Pelicula darinesca
+
+ghci> esDarinesca speed
+"No es darinesca"
+
+ghci> esDarinesca laOdiseaDeLosGiles
+"Es darinesca"
+-------------------------------------
+
+Pinta buena
+
+ghci> pintaBuena laFlor
+"No pinta buena"
+
+ghci> pintaBuena speed 
+"pinta buena"
+
+-------------------------------------
+
+Minutos excedentes 
+
+ghci> minutosExcedentes nueveReinas
+1
+
+
+ghci> minutosExcedentes armaMortal 
+6
+
+====================================
+**PUNTO 2
+====================================
+
+Precio base
+
+ghci> precioBase laOdiseaDeLosGiles
+200
+
+ghci> precioBase laFlor
+121
+
+------------------------------------
+
+Precio Extra
+
+ghci> precioExtra laFlor
+100
+
+
+
+ghci> precioExtra armaMortal
+0
+
+------------------------------------
+
+Precio Total
+
+ghci> precioTotal armaMortal
+22
+
+ghci> precioTotal laFlor    
+198.9
+
+
+====================================
+**PUNTO 2
+====================================
+
+Terror
+
+ghci> queGenero(x,Terror 5)
+Persona {nombre = "senior X", satisfaccion = 5, edad = 30, cantFilmaciones = 10, dinero = 20}
+
+ghci> queGenero(y,Terror 10)
+Persona {nombre = "senior Y", satisfaccion = -10, edad = 59, cantFilmaciones = 2, dinero = 50}
+
+Comedia
+
+ghci> queGenero(y,Comedia)   
+Persona {nombre = "senior Y muy alegre", satisfaccion = 0, edad = 59, cantFilmaciones = 2, dinero = 50}
+
+ghci> queGenero(x,Comedia)
+Persona {nombre = "senior X muy alegre", satisfaccion = 20, edad = 30, cantFilmaciones = 10, dinero = 20}
+
+Drama
+
+ghci> queGenero(x,Drama 5)
+Persona {nombre = "senior X", satisfaccion = 13, edad = 31, cantFilmaciones = 10, dinero = 20}
+
+ghci> queGenero(x,Drama 2)
+Persona {nombre = "senior X", satisfaccion = 12, edad = 31, cantFilmaciones = 10, dinero = 20}
+
+Accion
+
+ghci> queGenero(x,Accion speed)
+Persona {nombre = "senior X", satisfaccion = 110, edad = 30, cantFilmaciones = 10, dinero = 20}
+
+
+ghci> queGenero(y,Accion laFlor)
+Persona {nombre = "senior Y", satisfaccion = 0, edad = 59, cantFilmaciones = 2, dinero = 50}
+
+Tragicomico
+
+ghci> queGenero(y,Tragicomico 5)      
+Persona {nombre = "senior Y muy alegre", satisfaccion = 3, edad = 60, cantFilmaciones = 4, dinero = 40}
+
+ghci> queGenero(x,Tragicomico 1)
+Persona {nombre = "senior X muy alegre", satisfaccion = 23, edad = 31, cantFilmaciones = 12, dinero = 18}
+
+Aventura
+
+ghci> queGenero(x,Aventura True "IV" indianaJones4)
+Persona {nombre = "senior X muy alegre", satisfaccion = 20, edad = 30, cantFilmaciones = 10, dinero = 20}
+
+ghci> queGenero(x,Aventura False "IV" indianaJones4)
+Persona {nombre = "senior X", satisfaccion = 10, edad = 30, cantFilmaciones = 10, dinero = 20}
+
+
+
+
+
+
+
+
+
+
+
